@@ -1,10 +1,30 @@
+"use client";
+
 import Link from "next/link"
 
 import {FiEdit, FiBook, FiUsers} from "react-icons/fi"
 
 import {Button} from "@/components/ui/button"
 
+import {useState, useEffect, useRef} from "react"
+
+
+const quotes: string[] = [
+
+    ]
+
 export default function Hero(){
+
+    const [quoteIndex, setQuoteIndex] = useState<number>(0);
+    const lastIndexRef= useRef<number>(0);
+    
+
+    
+
+
+   
+
+
     return (
         <>
             <section className="hero-padding bg-[#fafafa] dark:bg-[#121212]">
@@ -22,7 +42,7 @@ export default function Hero(){
                 <Button variant="default" className="mb-7">Start Learning</Button>
 
                 {/* Links too show things */}
-                <div className="hero-actions flex space-x-10 items-center">
+                <div className="hero-actions flex space-x-10 items-center mb-5">
                     <Link href="" className="flex text-md md:text-xl items-center gap-x-3">
                     <FiEdit /> Write</Link>
                     <Link href="" className="flex text-md md:text-xl items-center gap-x-3">
@@ -36,6 +56,9 @@ export default function Hero(){
 
 
                 {/* Quotes */}
+                <p className="text-xl md:text-2xl italic transition-opacity duration-700">
+                    "{quotes[quoteIndex]}"
+                </p>
             </section>
         </>
     )
