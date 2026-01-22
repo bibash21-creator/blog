@@ -123,3 +123,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+.nav-padding{
+  @apply p-5 md:p-7
+}
+
+.hero-padding{
+  @apply p-10 md:p-12
+}
