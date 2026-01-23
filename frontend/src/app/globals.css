@@ -131,3 +131,7 @@
 .hero-padding{
   @apply p-10 md:p-12
 }
+
+.foot-padding{
+  @apply p-7
+}

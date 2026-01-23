@@ -14,7 +14,7 @@ export default function Navbar(){
         <>
 
 
-            <nav className="flex justify-between items-center bg-[#fafafa] dark:bg-[#121212] nav-padding">
+            <nav className="flex justify-between items-center bg-[#fafafa] dark:bg-[#121212] nav-padding border-b border-[#121212] dark:border-[#fafafa]">
                 <div className="text-md md:text-xl cursor-pointer">
                     Hamro Club
                 </div>
