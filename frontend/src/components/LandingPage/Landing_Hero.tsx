@@ -1,10 +1,10 @@
 "use client";
 
 import { FiEdit, FiBook, FiUsers } from "react-icons/fi";
-// import { Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const quotes: string[] = [
   "The journey of a thousand miles begins with a single step.",
@@ -23,47 +23,59 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="hero-padding bg-[#fafafa] dark:bg-[#121212] relative px-4 sm:px-6 lg:px-12 py-10">
-      {/* Heading */}
-      <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-wide mb-4 text-center md:text-left">
-        Ideas that lift you <br /> Through highs and lows
-      </h1>
+    <section className="relative overflow-hidden px-4 sm:px-6 lg:px-12 py-8 bg-[#fafafa] dark:bg-[#121212]">
+      {/* Background animated objects */}
+      <div className="absolute -top-20 -left-20 w-64 h-64 bg-purple-400/30 dark:bg-purple-600/30 rounded-full blur-3xl animate-float"></div>
+      <div className="absolute top-1/2 -right-24 w-72 h-72 bg-blue-400/30 dark:bg-blue-600/30 rounded-full blur-3xl animate-float-slow"></div>
+      <div className="absolute bottom-0 left-1/3 w-40 h-40 bg-pink-400/30 dark:bg-pink-600/30 rounded-full blur-2xl animate-float"></div>
 
-      {/* Description */}
-      <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 text-center md:text-left max-w-2xl mx-auto md:mx-0">
-        Explore thoughts, stories, and connections that inspire growth.
-      </p>
+      <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        {/* Left: Text Content */}
+        <div>
+          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-snug tracking-wide mb-3 text-center lg:text-left">
+            Ideas that lift you <br /> Through highs and lows
+          </h1>
 
-      {/* Button */}
-      <div className="flex justify-center md:justify-start mb-8">
-        <Button variant="default" className="hover:scale-105 cursor-pointer">
-          Start Learning
-        </Button>
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-4 text-center lg:text-left max-w-xl mx-auto lg:mx-0">
+            Explore thoughts, stories, and connections that inspire growth.
+          </p>
+
+          <div className="flex justify-center lg:justify-start mb-6">
+            <Button variant="default" className="hover:scale-105 transition-transform duration-300">
+              Start Learning
+            </Button>
+          </div>
+
+          <div className="hero-actions flex flex-col sm:flex-row sm:space-x-6 items-center lg:items-start mb-6 gap-y-3 sm:gap-y-0 justify-center lg:justify-start">
+            <Link href="" className="flex text-sm sm:text-base items-center gap-x-2 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+              <FiEdit className="text-base sm:text-lg" /> Write
+            </Link>
+            <Link href="" className="flex text-sm sm:text-base items-center gap-x-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              <FiBook className="text-base sm:text-lg" /> Read
+            </Link>
+            <Link href="" className="flex text-sm sm:text-base items-center gap-x-2 hover:text-pink-600 dark:hover:text-pink-400 transition-colors">
+              <FiUsers className="text-base sm:text-lg" /> Connect
+            </Link>
+          </div>
+
+          {/* Rotating Quote */}
+          <p className="mt-6 italic text-center lg:text-left text-base sm:text-lg text-gray-600 dark:text-gray-400 transition-opacity duration-700 ease-in-out">
+            "{quotes[quoteIndex]}"
+          </p>
+        </div>
+
+        {/* Right: Smaller Responsive Image */}
+        <div className="w-full h-auto flex justify-center">
+          <Image
+            src="/person.jpg"
+            alt="Creative blogging illustration"
+            width={280}
+            height={280}
+            className="w-full max-w-xs sm:max-w-sm h-auto object-contain rounded-lg shadow-lg ring-1 ring-gray-200 dark:ring-gray-700 hover:scale-105 transition-transform duration-500"
+            priority
+          />
+        </div>
       </div>
-
-      {/* Links */}
-      <div className="hero-actions flex flex-col sm:flex-row sm:space-x-8 items-center md:items-start mb-8 gap-y-4 sm:gap-y-0 justify-center md:justify-start">
-        <Link href="" className="flex text-sm sm:text-base md:text-lg items-center gap-x-2">
-          <FiEdit className="text-lg sm:text-xl" /> Write
-        </Link>
-        <Link href="" className="flex text-sm sm:text-base md:text-lg items-center gap-x-2">
-          <FiBook className="text-lg sm:text-xl" /> Read
-        </Link>
-        <Link href="" className="flex text-sm sm:text-base md:text-lg items-center gap-x-2">
-          <FiUsers className="text-lg sm:text-xl" /> Connect
-        </Link>
-      </div>
-
-      {/* Quote Section
-      <div className="relative shadow-xl p-6 sm:p-8 rounded-lg bg-white dark:bg-gray-800 max-w-xl mx-auto">
-        <Quote className="absolute top-4 left-4 text-3xl text-gray-400 dark:text-gray-500" />
-        {/* Decorative Blur Circle */}
-        {/* <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div> */} 
-        {/* Quote Text */}
-        {/* <p className="text-base sm:text-lg md:text-xl lg:text-2xl italic text-center transition-opacity duration-700 ease-in-out text-gray-700 dark:text-gray-200">
-          "{quotes[quoteIndex]}"
-        </p> */}
-      {/* </div> */}
     </section>
   );
 }
