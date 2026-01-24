@@ -15,6 +15,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+/* -------------------- Quotes -------------------- */
 const quotes: string[] = [
   "The journey of a thousand miles begins with a single step.",
   "What you think, you become.",
@@ -33,12 +34,14 @@ export default function Hero() {
 
   return (
     <section className="relative overflow-hidden px-4 sm:px-6 lg:px-12 py-8 bg-[#fafafa] dark:bg-[#121212]">
-      {/* Subtle blur background blobs */}
-      <div className="absolute -top-20 -left-20 w-64 h-64 bg-purple-400/30 dark:bg-purple-600/30 rounded-full blur-3xl animate-float"></div>
-      <div className="absolute top-1/2 -right-24 w-72 h-72 bg-blue-400/30 dark:bg-blue-600/30 rounded-full blur-3xl animate-float-slow"></div>
-      <div className="absolute bottom-0 left-1/3 w-40 h-40 bg-pink-400/30 dark:bg-pink-600/30 rounded-full blur-2xl animate-float"></div>
-      <div className="absolute top-1/4 right-1/4 w-48 h-48 bg-yellow-400/20 dark:bg-yellow-600/20 rounded-full blur-2xl animate-float-slow"></div>
-      <div className="absolute bottom-1/3 left-1/5 w-56 h-56 bg-green-400/20 dark:bg-green-600/20 rounded-full blur-3xl animate-float"></div>
+      {/* Subtle blur background blobs (dense) */}
+      <div className="absolute -top-20 -left-20 w-64 h-64 bg-purple-400/30 dark:bg-purple-600/30 rounded-full blur-3xl animate-float" />
+      <div className="absolute top-1/2 -right-24 w-72 h-72 bg-blue-400/30 dark:bg-blue-600/30 rounded-full blur-3xl animate-float-slow" />
+      <div className="absolute bottom-0 left-1/3 w-40 h-40 bg-pink-400/30 dark:bg-pink-600/30 rounded-full blur-2xl animate-float" />
+      <div className="absolute top-1/4 right-1/4 w-48 h-48 bg-yellow-400/20 dark:bg-yellow-600/20 rounded-full blur-2xl animate-float-slow" />
+      <div className="absolute bottom-1/3 left-1/5 w-56 h-56 bg-green-400/20 dark:bg-green-600/20 rounded-full blur-3xl animate-float" />
+      <div className="absolute top-2/3 left-2/3 w-52 h-52 bg-indigo-400/20 dark:bg-indigo-600/20 rounded-full blur-3xl animate-float" />
+      <div className="absolute top-10 right-10 w-40 h-40 bg-rose-400/20 dark:bg-rose-600/20 rounded-full blur-2xl animate-float-slow" />
 
       {/* Animated blogging icons */}
       <motion.div
@@ -48,7 +51,6 @@ export default function Hero() {
       >
         <FiBook size={28} />
       </motion.div>
-
       <motion.div
         animate={{ y: [0, -12, 0], rotate: [0, 10, -10, 0] }}
         transition={{ repeat: Infinity, duration: 7, ease: "easeInOut" }}
@@ -56,7 +58,6 @@ export default function Hero() {
       >
         <FiEdit size={26} />
       </motion.div>
-
       <motion.div
         animate={{ y: [0, -12, 0], rotate: [0, 10, -10, 0] }}
         transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
@@ -64,7 +65,6 @@ export default function Hero() {
       >
         <FiFileText size={24} />
       </motion.div>
-
       <motion.div
         animate={{ y: [0, -12, 0], rotate: [0, 10, -10, 0] }}
         transition={{ repeat: Infinity, duration: 9, ease: "easeInOut" }}
@@ -72,7 +72,6 @@ export default function Hero() {
       >
         <FiMessageSquare size={26} />
       </motion.div>
-
       <motion.div
         animate={{ y: [0, -12, 0], rotate: [0, 10, -10, 0] }}
         transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
@@ -80,7 +79,6 @@ export default function Hero() {
       >
         <FiStar size={24} />
       </motion.div>
-
       <motion.div
         animate={{ y: [0, -12, 0], rotate: [0, 10, -10, 0] }}
         transition={{ repeat: Infinity, duration: 11, ease: "easeInOut" }}
@@ -91,24 +89,32 @@ export default function Hero() {
 
       {/* Hero Content */}
       <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-        {/* Left: Text Content */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
           <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-snug tracking-wide mb-3 text-center lg:text-left">
             Ideas that lift you <br /> Through highs and lows
           </h1>
 
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-4 text-center lg:text-left max-w-xl mx-auto lg:mx-0">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 1 }}
+            className="text-sm sm:text-base md:text-lg lg:text-xl mb-4 text-center lg:text-left max-w-xl mx-auto lg:mx-0"
+          >
             Explore thoughts, stories, and connections that inspire growth.
-          </p>
+          </motion.p>
 
-          <div className="flex justify-center lg:justify-start mb-6">
-            <Button
-              variant="default"
-              className="hover:scale-105 transition-transform duration-300"
-            >
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="flex justify-center lg:justify-start mb-6"
+          >
+            <Button variant="default" className="transition-transform duration-300">
               Start Learning
             </Button>
-          </div>
+          </motion.div>
 
           <div className="hero-actions flex flex-col sm:flex-row sm:space-x-6 items-center lg:items-start mb-6 gap-y-3 sm:gap-y-0 justify-center lg:justify-start">
             <Link
@@ -131,14 +137,23 @@ export default function Hero() {
             </Link>
           </div>
 
-          {/* Rotating Quote */}
-          <p className="mt-6 italic text-center lg:text-left text-base sm:text-lg text-gray-600 dark:text-gray-400 transition-opacity duration-700 ease-in-out">
+          <motion.p
+            key={quoteIndex}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="mt-6 italic text-center lg:text-left text-base sm:text-lg text-gray-600 dark:text-gray-400"
+          >
             "{quotes[quoteIndex]}"
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        {/* Right: Smaller Responsive Image */}
-        <div className="w-full h-auto flex justify-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="w-full h-auto flex justify-center"
+        >
           <Image
             src="/person.jpg"
             alt="Creative blogging illustration"
@@ -147,7 +162,7 @@ export default function Hero() {
             className="w-full max-w-xs sm:max-w-sm h-auto object-contain rounded-lg shadow-lg ring-1 ring-gray-200 dark:ring-gray-700 hover:scale-105 transition-transform duration-500"
             priority
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );
