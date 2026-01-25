@@ -19,7 +19,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
-export default function Navbar() {
+export default function LandingNavbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [showModal, setShowModal] = useState<null | "signin" | "signup">(null);
 
