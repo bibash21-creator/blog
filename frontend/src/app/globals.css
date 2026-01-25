@@ -175,3 +175,7 @@
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
+
+.side-padding{
+  @apply p-5
+}

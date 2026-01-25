@@ -8,6 +8,7 @@ import NotificationsComp from "@/app/feed/components/navbar_comp/NotificationsCo
 import Link from "next/link";
 import {useState} from "react";
 import { motion,AnimatePresence } from "framer-motion";
+import ThemeToggle from "@/components/universal/ThemeToggle";
 
 
 export default function Navbar() {
@@ -35,47 +36,9 @@ export default function Navbar() {
         <WriteComp />
         <NotificationsComp />
         <ProfileComponent />
+        <ThemeToggle />
       </div>
     </nav>
-
-    {/* Sidebar with animation */}
-      <AnimatePresence>
-        {isOpen && (
-          <>
-            {/* Overlay */}
-            <motion.div
-              className="fixed inset-0 bg-black/40 z-40"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
-            />
-
-            {/* Sidebar */}
-            <motion.div
-              className="fixed top-0 left-0 h-full w-5/6 sm:w-2/3 bg-[#fafafa] dark:bg-[#121212] shadow-lg z-50 p-6"
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-            >
-              <button
-                onClick={() => setIsOpen(false)}
-                aria-label="Close menu"
-                className="text-2xl mb-6"
-              >
-                <FiX />
-              </button>
-              <nav className="flex flex-col space-y-6">
-                <a href="/">Home</a>
-                <a href="/blog">Blog</a>
-                <a href="/about">About</a>
-                <a href="/contact">Contact</a>
-              </nav>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
 
 
 

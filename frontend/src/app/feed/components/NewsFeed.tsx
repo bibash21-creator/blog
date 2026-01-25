@@ -8,13 +8,13 @@ export default function NewsFeed(){
     return (
         <>
         
-
+        <div className="flex">
         <Sidebar />
 
         <MainHero />
 
-
-        <StaffPicks />
+        <div className="flex flex-col">
+ <StaffPicks />
 
         <Recommendation />
 
@@ -23,6 +23,13 @@ export default function NewsFeed(){
 
 
         <ReadList />
+        </div>
+
+
+       
+
+        </div>
+      
         
         
         
