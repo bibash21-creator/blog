@@ -29,7 +29,7 @@ const userActions: NavItem[] = [
 
 export default function Sidebar() {
   return (
-    <section className="side-padding min-w-[200px] h-auto border-r border-gray-300 dark:border-gray-700">
+    <section className="side-padding min-w-[200px] h-auto dark:border-gray-700">
       {/* Main navigation */}
       <nav className="flex flex-col space-y-7 border-b border-gray-300 dark:border-gray-700 pb-6">
         {mainActions.map(({ href, label, icon: Icon }) => (

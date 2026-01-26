@@ -1,39 +1,63 @@
-import StaffPicks from "./newsfeed_comp/StaffPicksComp";
-import Sidebar from "@/app/feed/components/newsfeed_comp/Sidebar"
-import MainHero from "@/app/feed/components/newsfeed_comp/MainHero"
-import Recommendation from "@/app/feed/components/newsfeed_comp/Recommendation"
-import FollowList from "@/app/feed/components/newsfeed_comp/FollowList"
-import ReadList from "@/app/feed/components/newsfeed_comp/ReadList"
-export default function NewsFeed(){
-    return (
-        <>
-        
-        <div className="flex">
-        <Sidebar />
+"use client";
 
-        <MainHero />
+import { useState, useEffect } from "react";
+import Navbar from "@/app/feed/components/Navbar";
+import Sidebar from "@/app/feed/components/newsfeed_comp/Sidebar";
+import MainSec from "@/app/feed/components/newsfeed_comp/MainSec";
 
-        <div className="flex flex-col">
- <StaffPicks />
+export default function NewsFeed() {
+  const [isOpen, setIsOpen] = useState(true);
 
-        <Recommendation />
+  // ✅ Hide sidebar initially on mobile, show on desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setIsOpen(false); // mobile → sidebar hidden
+      } else {
+        setIsOpen(true); // desktop → sidebar visible
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
+  return (
+    <div className="h-screen flex flex-col">
+      {/* Navbar */}
+      <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
 
-        <FollowList/>
+      {/* Content Area */}
+      <div
+        className={`grid flex-1 ${isOpen ? "md:grid-cols-[220px_1fr]" : "grid-cols-1"}`}
+      >
+        {/* Left Sidebar */}
+        {isOpen && (
+          <aside
+            className={`
+              border-r border-gray-300 dark:border-gray-700 p-4 
+              bg-white dark:bg-[#121212] 
+              md:sticky md:top-0 md:h-screen
+              ${isOpen ? "fixed md:static top-0 left-0 h-full z-50 w-[220px]" : "hidden"}
+            `}
+          >
+            <Sidebar />
+          </aside>
+        )}
 
-
-        <ReadList />
+        {/* Right Section (MainSec scrollable) */}
+        <div className="p-4 overflow-y-auto h-screen">
+          <MainSec />
         </div>
+      </div>
 
-
-       
-
-        </div>
-      
-        
-        
-        
-        </>
-
-    )
+      {/* Overlay background for mobile when sidebar is open */}
+      {isOpen && window.innerWidth < 768 && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-40 z-40"
+          onClick={() => setIsOpen(false)} // click overlay to close
+        />
+      )}
+    </div>
+  );
 }
