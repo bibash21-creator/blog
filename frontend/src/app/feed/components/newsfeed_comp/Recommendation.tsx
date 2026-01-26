@@ -12,7 +12,7 @@ export default function Recommendation() {
   ];
 
   return (
-    <aside className="rounded-lg bg-white dark:bg-[#121212] space-y-4">
+    <aside className="p-4 rounded-lg bg-white dark:bg-[#121212] space-y-4">
       {/* Heading */}
       <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">
         Recommended topics

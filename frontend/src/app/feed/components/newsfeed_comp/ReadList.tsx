@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function ReadingList() {
   return (
-    <aside className="p-4 rounded-lg bg-white border border-gray-200 dark:bg-[#121212] dark:border-gray-700 space-y-4">
+    <aside className="p-4 rounded-lg bg-white  dark:bg-[#121212] space-y-4">
       {/* Heading */}
       <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">
         Reading list
