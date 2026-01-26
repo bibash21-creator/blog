@@ -1,10 +1,10 @@
 export default function StaffPicks(){
     return(
         <>
-        <section className="hero-padding border border-green-500">
-        <h1 className="text-xl">Staff Picks</h1>
-
-        </section>
+            <aside className="p-4 rounded-lg bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-700 space-y-4">
+                {/* Heading */}
+            </aside>
+        
         </>
     )
 }
