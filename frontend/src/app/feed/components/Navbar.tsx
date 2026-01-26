@@ -15,7 +15,7 @@ type NavbarProps = {
 
 export default function Navbar({ isOpen, setIsOpen }: NavbarProps) {
   return (
-    <nav className="p-2 md:p-5 flex justify-between border-b border-[#121212] dark:border-[#fafafa]">
+    <nav className="px-2 py-2 md:p-5 flex justify-between border-b border-[#121212] dark:border-[#fafafa]">
       {/* Left section */}
       <div className="flex items-center md:space-x-5 flex-1">
         {/* Hamburger / Close button */}
