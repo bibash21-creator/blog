@@ -13,79 +13,8 @@ export default function MainHero(){
                 </div>
                 </div>  
 
+                
 
-                {/* Articles */}
-                <div className="p-5 border-b border-green-500">
-                    <span className="head">In data Science Collective by Marina Wyss - Gratitude Driven</span>
-                    <h1 className="tedxt-3xl font-bold">AI Agents: Complete Course</h1>
-                    <p className="text-xl">From begineer to immediate to production.</p>
-
-                </div>
-
-
-                 {/* Articles */}
-                <div className="p-5 border-b border-green-500">
-                    <span className="head">In data Science Collective by Marina Wyss - Gratitude Driven</span>
-                    <h1 className="tedxt-3xl font-bold">AI Agents: Complete Course</h1>
-                    <p className="text-xl">From begineer to immediate to production.</p>
-
-                </div>
-
-                 {/* Articles */}
-                <div className="p-5 border-b border-green-500">
-                    <span className="head">In data Science Collective by Marina Wyss - Gratitude Driven</span>
-                    <h1 className="tedxt-3xl font-bold">AI Agents: Complete Course</h1>
-                    <p className="text-xl">From begineer to immediate to production.</p>
-
-                </div>
-
-                 {/* Articles */}
-                <div className="p-5 border-b border-green-500">
-                    <span className="head">In data Science Collective by Marina Wyss - Gratitude Driven</span>
-                    <h1 className="tedxt-3xl font-bold">AI Agents: Complete Course</h1>
-                    <p className="text-xl">From begineer to immediate to production.</p>
-
-                </div>
-
-                 {/* Articles */}
-                <div className="p-5 border-b border-green-500">
-                    <span className="head">In data Science Collective by Marina Wyss - Gratitude Driven</span>
-                    <h1 className="tedxt-3xl font-bold">AI Agents: Complete Course</h1>
-                    <p className="text-xl">From begineer to immediate to production.</p>
-
-                </div>
-
-                 {/* Articles */}
-                <div className="p-5 border-b border-green-500">
-                    <span className="head">In data Science Collective by Marina Wyss - Gratitude Driven</span>
-                    <h1 className="tedxt-3xl font-bold">AI Agents: Complete Course</h1>
-                    <p className="text-xl">From begineer to immediate to production.</p>
-
-                </div>
-
-                 {/* Articles */}
-                <div className="p-5 border-b border-green-500">
-                    <span className="head">In data Science Collective by Marina Wyss - Gratitude Driven</span>
-                    <h1 className="tedxt-3xl font-bold">AI Agents: Complete Course</h1>
-                    <p className="text-xl">From begineer to immediate to production.</p>
-
-                </div>
-
-                 {/* Articles */}
-                <div className="p-5 border-b border-green-500">
-                    <span className="head">In data Science Collective by Marina Wyss - Gratitude Driven</span>
-                    <h1 className="tedxt-3xl font-bold">AI Agents: Complete Course</h1>
-                    <p className="text-xl">From begineer to immediate to production.</p>
-
-                </div>
-
-                 {/* Articles */}
-                <div className="p-5 border-b border-green-500">
-                    <span className="head">In data Science Collective by Marina Wyss - Gratitude Driven</span>
-                    <h1 className="tedxt-3xl font-bold">AI Agents: Complete Course</h1>
-                    <p className="text-xl">From begineer to immediate to production.</p>
-
-                </div>
                 
             </section>
         </>

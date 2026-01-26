@@ -3,7 +3,7 @@
 import SearchBtn from "@/app/feed/components/navbar_comp/SearchBtn";
 import WriteComp from "@/app/feed/components/navbar_comp/WriteComp";
 import ProfileComponent from "@/app/feed/components/navbar_comp/ProfileComponent";
-import { FiMenu, FiX } from "react-icons/fi";
+import { FiMenu } from "react-icons/fi";
 import NotificationsComp from "@/app/feed/components/navbar_comp/NotificationsComp";
 import ThemeToggle from "@/components/universal/ThemeToggle";
 import { Button } from "@/components/ui/button";
@@ -37,7 +37,7 @@ export default function Navbar({ isOpen, setIsOpen }: NavbarProps) {
       {/* Right section */}
       <div className="flex items-center space-x-5 md:space-x-10 flex-1 justify-end">
         {/* Hide these on mobile */}
-        <div className="hidden md:flex items-center space-x-10">
+        <div className="hidden md:flex items-center space-x-5 md:space-x-10">
           <WriteComp />
           <NotificationsComp />
         </div>
