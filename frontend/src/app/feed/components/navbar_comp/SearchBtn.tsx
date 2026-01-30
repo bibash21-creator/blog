@@ -8,7 +8,7 @@ export default function SearchBtn() {
 
   return (
     <div className="relative">
-      {/* Compact button (always visible) */}
+      {/* Search button (always visible) */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Toggle Search"
@@ -19,7 +19,7 @@ export default function SearchBtn() {
         <span className="hidden md:block text-sm">Search</span>
       </button>
 
-      {/* Input box (mobile only, appears below when toggled) */}
+      {/* Mobile input (appears below when toggled) */}
       {isOpen && (
         <input
           type="text"
@@ -27,6 +27,13 @@ export default function SearchBtn() {
           className="block md:hidden mt-2 w-full border rounded-lg px-3 py-2 bg-white dark:bg-[#121212] text-gray-700 dark:text-gray-200"
         />
       )}
+
+      {/* Desktop input (always visible inline) */}
+      <input
+        type="text"
+        placeholder="Search..."
+        className="hidden md:block absolute top-0 left-0 w-full h-full rounded-full border px-10 py-2 bg-white dark:bg-[#121212] text-gray-700 dark:text-gray-200 focus:outline-none"
+      />
     </div>
   );
 }
