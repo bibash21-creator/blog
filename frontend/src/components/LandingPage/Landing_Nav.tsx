@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/universal/ThemeToggle";
+import { useRouter } from "next/navigation";
+
 import {
   FiMenu,
   FiX,
@@ -19,7 +21,10 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
+
+
 export default function LandingNavbar() {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [showModal, setShowModal] = useState<null | "signin" | "signup">(null);
 
@@ -73,9 +78,8 @@ export default function LandingNavbar() {
 
       {/* Mobile Menu Drawer */}
       <div
-        className={`md:hidden fixed top-0 right-0 h-full w-3/4 sm:w-2/3 bg-[#fafafa] dark:bg-[#121212] shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`md:hidden fixed top-0 right-0 h-full w-3/4 sm:w-2/3 bg-[#fafafa] dark:bg-[#121212] shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         <div className="flex justify-end p-4">
           <button
@@ -198,8 +202,20 @@ export default function LandingNavbar() {
                   ? "Sign in with Facebook"
                   : "Sign up with Facebook"}
               </Button>
-
-              <Button
+              <Button variant="outline" className="w-full flex items-center gap-3 justify-center rounded-full hover:scale-105 transition-transform"
+                onClick={() => {
+                  setShowModal(null); // close modal
+                  if (showModal === "signin") {
+                    router.push("/signin"); // go to Sign In page
+                  } else {
+                    router.push("/signup"); // go to Sign Up page
+                  }
+                }}
+              >
+                <MdEmail size={24} color="#EA4335" />{" "}
+                {showModal === "signin" ? "Sign in with Email" : "Sign up with Email"}
+              </Button>
+              {/* <Button
                 variant="outline"
                 className="w-full flex items-center gap-3 justify-center rounded-full hover:scale-105 transition-transform"
               >
@@ -207,7 +223,7 @@ export default function LandingNavbar() {
                 {showModal === "signin"
                   ? "Sign in with Email"
                   : "Sign up with Email"}
-              </Button>
+              </Button> */}
             </div>
 
             {/* Links */}
