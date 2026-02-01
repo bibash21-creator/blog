@@ -1,24 +1,12 @@
-// import NewsFeed from "@/app/feed/components/NewsFeed"
 
-
-// export default function News(){
-//     return(
-//         <>
-
-
-//             <NewsFeed />
-
-        
-        
-        
-//         </>
-//     )
-// }
 
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
  import NewsFeed from "@/app/feed/components/NewsFeed"
+
+
+ 
 
 export default function NewsFeedPage() {
   const router = useRouter();

@@ -1,117 +1,72 @@
 "use client";
+
 import {useState} from "react";
-import {useEditor, EditorContent} from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
 import {Button} from "@/components/ui/button"
-
-
 export default function Write(){
 
+    const[content, setContent] = useState("");
     const [loading, setLoading] = useState("");
-
-    const [title, setTitle] = useState("");
-
-    const editor = useEditor({
-        immediatelyRender: false,
-        extensions: [StarterKit],
-        content: "<p>Tell your story...</p>",
-    });
-
-    const handleSubmit = async ( )=> {
+    const [error, setError] = useState("");
 
 
-        if(!editor) return;
-        const content = editor.getHTML();
-
-        const token = localStorage.getItem("token");
-        if(!token){
-            alert("Please login firest");
-            return;
-        }
-
-        if(!title.trim()){
-            alert("Title is required");
-            return;
-        }
-
-
-        if(!editor.getText().trim()){
-            alert("Content is empty");
-            return;
-        }
-
-
+    const handleSubmit = async(e:React.FormEvent)=> {
+        e.preventDefault();
         setLoading(true);
+        setError("");
 
         try{
-            const response= await fetch(
-                "https://locahost://8000/posts",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
+            const response = await fetch("https://localhost:8000/posts", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify({content}),
+            });
 
-
-                    },
-                    body: JSON.stringify({
-                        title,
-                        content: editor.getHTML(),
-                    }),
-                }
-            );
-            
-            
-            const data  = await response.json();
-
-
-            if(!response.ok) throw new Error(data.message
-            );
-
-            alert("Post published");
-            setTitle("");
-            editor.commands.clearContent();
-
-        }catch(err){
-            alert(err.message || "Failed to publish");
-        }finally{
+            if(!response.ok) throw new Error("Failed to post");
+            alert("Post created!");
+            setContent("");
+        } catch(err){
+            setError("Error posting:" + err.message);
+        } finally{
             setLoading(false);
         }
+    }
 
 
-
-       
-
-        if(response.ok){
-            alert("Post published!");
-            setTitle("");
-            editor.commands.clearContent();
-        }else{
-            alert("Error publishing post");
-            
-        }
-    };
     return(
         <div className="max-w-3xl mx-auto">
-            <input type="text"
-            placeholder="Title"
-            value={title}
-            onChange= {(e)=> setTitle(e.target.value)} 
-            className="w-full border-b p-2 text-2xl font-semibold mb-4" />       
-            
-        <EditorContent className="border p-4 rounded min-h-[300px]" editor={editor} />
+            <h1 className="text-3xl font-bold mb-4">Write a Post</h1>
+            <p className="text-gray-500 mb-8">Share your thoughts with the world.</p>
+        
+            <form onSubmit = {handleSubmit} className="space-y-4">
+                <textarea
+                    value={content}
+                    onChange={(e)=> setContent(e.target.value)}
+                    placeholder="Write anything..."
+                    className="w-full p-4 border rounded-md"
+                    rows={6}
+                    maxLength={280}
+                />
 
 
-        <Button onClick={handleSubmit}
-        className="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-600">
-            Publish
-        </Button>
-            
-            
-             </div>
+                <Button 
+                    type="submit"
+                    disabled={loading|| !content.trim()}
+                    className="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50">
+                        {loading ? "Posting...": "Post"}
+                </Button>
 
- 
- 
- 
-    )
+
+                {error && <p className="text-red-500">{error}</p>}
+
+
+            </form>
+        
+        
+        
+        
+        </div>
+    );
 }
