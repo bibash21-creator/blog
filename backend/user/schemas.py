@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel,EmailStr
 from datetime import datetime
 
 class UserBase(BaseModel):
@@ -15,11 +15,3 @@ class User(UserBase):
     class Config:
         from_attributes = True
 
-class PostCreate(BaseModel):
-    content: str
-
-class PostResponse(BaseModel):
-    id: int
-    content: str
-    author_id: int
-    created_at: datetime

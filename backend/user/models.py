@@ -14,3 +14,6 @@ class User(Base):
     email = Column(VARCHAR, unique=True,index=True,nullable= True)
     is_active = Column(Boolean, default=True)
 
+
+    # Relationship to stories
+    stories = relationship("Story", back_populates="author")

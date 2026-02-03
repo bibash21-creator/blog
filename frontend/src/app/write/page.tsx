@@ -1,68 +1,59 @@
 "use client";
-
 import {useState} from "react";
-import {Button} from "@/components/ui/button"
-export default function Write(){
-
-    const[content, setContent] = useState("");
-    const [loading, setLoading] = useState("");
-    const [error, setError] = useState("");
+import {useEditor, EditorContent} from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import {Button} from "@/components/ui/button";
+import {publishStory} from "@/lib/utils";
 
 
-    const handleSubmit = async(e:React.FormEvent)=> {
-        e.preventDefault();
-        setLoading(true);
-        setError("");
+export default function WritePage(){
+    const [title,setTitle] = useState("");
+    const [loading, setLoading] =  useState(false);
+
+
+    const editor= useEditor({
+        extensions: [StarterKit],
+        content: "<p>Tell your story... </p>",
+    });
+
+    const handleSubmit = async() => {
+        if(!editor) return;
+        const token = localStorage.getItem("token");
+        if(!token)
+        {
+            alert("Please login first");
+            return;
+        }
 
         try{
-            const response = await fetch("https://localhost:8000/posts", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${localStorage.getItem("token")}`
-                },
-                body: JSON.stringify({content}),
-            });
+            setLoading(true);
+            await publishStory(title, editor.getHTML(), token);
+            alert("Post published!");
+            setTitle("");
+            editor.commands.clearContent();
+        }catch(err:any){
+            alert(err.message);
 
-            if(!response.ok) throw new Error("Failed to post");
-            alert("Post created!");
-            setContent("");
-        } catch(err){
-            setError("Error posting:" + err.message);
-        } finally{
+        }finally{
             setLoading(false);
         }
-    }
-
+    };
 
     return(
         <div className="max-w-3xl mx-auto">
-            <h1 className="text-3xl font-bold mb-4">Write a Post</h1>
-            <p className="text-gray-500 mb-8">Share your thoughts with the world.</p>
+            <input placeholder="Title"
+            value={title}
+            onChange={(e)=> setTitle(e.target.value)} type="text" className="mb-4 w-full border-b p-2 text-2xl font-semibold" />
+
+            <EditorContent className="border p-4 rounded min-h-[300px]" editor={editor} />
+
+            <Button onClick={handleSubmit} 
+            className="bg-blue-500 text-white mt-4">
+                {loading ? "Publishing..." :"Publish"}
+            </Button>
+
         
-            <form onSubmit = {handleSubmit} className="space-y-4">
-                <textarea
-                    value={content}
-                    onChange={(e)=> setContent(e.target.value)}
-                    placeholder="Write anything..."
-                    className="w-full p-4 border rounded-md"
-                    rows={6}
-                    maxLength={280}
-                />
 
-
-                <Button 
-                    type="submit"
-                    disabled={loading|| !content.trim()}
-                    className="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50">
-                        {loading ? "Posting...": "Post"}
-                </Button>
-
-
-                {error && <p className="text-red-500">{error}</p>}
-
-
-            </form>
         
         
         
