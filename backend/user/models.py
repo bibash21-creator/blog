@@ -15,5 +15,5 @@ class User(Base):
     is_active = Column(Boolean, default=True)
 
 
-    # Relationship to stories
+    # 👇 This is critical
     stories = relationship("Story", back_populates="author")

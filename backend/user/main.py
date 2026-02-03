@@ -6,6 +6,9 @@ from auth import models
 from fastapi import FastAPI
 from auth.routes import router as auth_router
 from user.routes import router as users_router
+from auth import routes as post_routes
+from fastapi.staticfiles import StaticFiles
+
 
 app = FastAPI()
 
@@ -26,6 +29,9 @@ app.add_middleware(
 
 app.include_router(auth_router, prefix="/auth", tags=["auth"])
 app.include_router(users_router, prefix="/users", tags=["users"])
+app.include_router(post_routes.router)  
+
+app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
 @app.get("/")
 def read_root():
