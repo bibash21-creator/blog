@@ -1,29 +1,13 @@
-// import NewsFeed from "@/app/feed/components/NewsFeed"
-
-
-// export default function News(){
-//     return(
-//         <>
-
-
-//             <NewsFeed />
-
-        
-        
-        
-//         </>
-//     )
-// }
-
 "use client";
+
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
- import NewsFeed from "@/app/feed/components/NewsFeed"
+import NewsFeed from "./components/NewsFeed";
 
-export default function NewsFeedPage() {
+export default function FeedPage() {
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -32,30 +16,31 @@ export default function NewsFeedPage() {
       return;
     }
 
-    fetch("http://localhost:8000/users/user", {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((res) => {
+    const fetchUser = async () => {
+      try {
+        const res = await fetch("http://localhost:8000/users/user", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
         if (!res.ok) throw new Error("Unauthorized");
-        return res.json();
-      })
-      .then((data) => {
+
+        const data = await res.json();
         setUser(data);
-        setLoading(false);
-      })
-      .catch(() => {
+      } catch {
         localStorage.removeItem("token");
         router.push("/signin");
-      });
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUser();
   }, [router]);
 
   if (loading) {
     return <p>Loading feed...</p>;
   }
 
-  return (
-  
-    <NewsFeed/>
-
-  );
+  // You can pass user info down if needed
+  return <NewsFeed />;
 }
